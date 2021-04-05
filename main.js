@@ -2,9 +2,9 @@
 
 //example
 function interact(e){
-    var player = e.player;
-    var targetArchArray = getBlockesFromXYZ(e,0,0,0,1,1,1);
-    var playerArchArray = getBlockesFromXYZ(e,0,0,0,1,1,1);
+    const player = e.player;
+    const targetArchArray = getBlockesFromXYZ(e, 0, 0, 0, 1, 1, 1);
+    const playerArchArray = getBlockesFromXYZ(e, 0, 0, 0, 1, 1, 1);
     if(targetArchArray === playerArchArray){
         e.npc.scoreboard.setPlayerScore(player,"ArchLevel",1);
     }
