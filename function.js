@@ -4,7 +4,7 @@
 This function return a 3D array included all block info
 @param y0 must be less than y1
 */
-function getBlockesFromXYZ(e,x0,y0,z0,x1,y1,z1){
+function getBoxFromXYZ(e,x0,y0,z0,x1,y1,z1){
     if(isInteger(x0) && isInteger(y0) && isInteger(z0) && isInteger(x1) && isInteger(y1) && isInteger(z1)){
         throw "arguments 2-7 must be int";
     }
