@@ -1,5 +1,5 @@
 function chat(player,message){
-    if(message == "?"){
+    if(message === "?"){
         player.kick("¿");
     }
 }

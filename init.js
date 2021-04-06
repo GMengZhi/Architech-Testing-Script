@@ -12,6 +12,7 @@ const IBlock = new IBlock;
 const IEntityItem = new IEntityItem;
 const IRayTrace = new IRayTrace;
 interact(e);
+chat(IPlayer,"");
 e.player = "player";
 e.npc = "npc";
 e.npc.world = IWorld;
