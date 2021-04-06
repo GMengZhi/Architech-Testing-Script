@@ -302,84 +302,62 @@ e.npc.data.has = function(key) {return true};
 e.npc.data.getKeys = function() {return [""]};
 e.npc.data.clear = function() {};
 e.npc.block = IBlock;
-
 //获取该方块的x坐标
 e.npc.block.getX = function() {return 1};
-
 //获取该方块的y坐标
 e.npc.block.getY = function() {return 1};
-
 //获取该方块的z坐标
 e.npc.block.getZ = function() {return 1};
-
 /*获取该方块的位置
 *
 * 返回位置数据类型*/
 e.npc.block.getPos = function() {return IPos};
-
 /*获取该方块的元数据*/
 e.npc.block.getMetaData = function() {return 1};
-
 /*设置方块的元数据
 * @param i 元数据*/
 e.npc.block.setMetaData = function(i) {};
-
 /*获取该方块名*/
 e.npc.block.getName = function() {return ""};
-
 /*移除此方块*/
 e.npc.block.remove = function() {};
-
 /*判断此方块是否被替换*/
 e.npc.block.isRemoved = function() {return true};
-
 /*判断当前位置是否为空气*/
 e.npc.block.isAir = function() {return true};
-
 /*设置方块
 * @param block 要替换的方块
 *
 * 返回替换后的方块*/
 e.npc.block.setBlock = function(block) {return IBlock};
-
 /*判断是否是实体方块*/
 e.npc.block.hasTileEntity = function() {return true};
-
 /*判断是否为一个容器*/
 e.npc.block.isContainer = function() {return true};
-
 /*获取容器*/
 e.npc.block.getContainer = function() {return IContainer};
-
 /*获取方块的临时数据
 直到重新加载，临时数据能存储任何内容。 （仅适用于customnpcs的方块）
  */
 e.npc.block.getTempdata = function() {return IData};
-
 /*获取方块存储的数据
 存储的数据无视世界的重新加载。与临时数据不同，只能保存字符串和数字（仅适用于具有TileEntities的方块）
  */
 e.npc.block.getStoreddata = function() {return IData};
-
 /*获取方块所在的世界*/
 e.npc.block.getWorld = function() {return IWorld};
-
 /*获取方块实体的nbt数据*/
 e.npc.block.getTileEntityNBT = function() {return INbt};
-
 /*设置方块实体的nbt数据*/
 e.npc.block.setTileEntityNBT = function(nbt) {};
-
 /*方块事件
 @param type 事件的类型
 @param data 事件的数据类型 例如： Chests - type:1 data:1 opens the lid, type:1 data:0 closes the lid Note block - type:(0-9) data:(0-24) plays different notes
  */
 e.npc.block.blockEvent = function(type,data) {};
-
 /*获取方块的显示名称
  */
 e.npc.block.getDisplayName = function() {return ""};
-
 /*
 * 模拟玩家与该方块进行互动（会出现奇奇怪怪的结果）
 * @param side - 你要进行交互的方块面 */
