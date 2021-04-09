@@ -2,7 +2,7 @@
 
 /*
 This function return a 3D array included all block info
-@param y0 must be less than y1
+@param 0 must be less than 1
 @return IBlock[]
 */
 function getBoxFromXYZ(e,x0,y0,z0,x1,y1,z1){
@@ -58,8 +58,11 @@ function outPutAreaBlockFromTheFile(inputName){
 This function set blocks from the array
 */
 function setBoxFromArrayToXYZ(inputArray,x,y,z){
-    for(var xBlock = x + inputArray.length[0];arr in inputArray){
-
-        e.npc.world.setBlock(x,y,z,arr.getName(),arr.getMetadata());
+    for(var yBlock = 0,currentY = y;yBlock <= inputArray.length;yBlock++,currentY++){
+        for(var zBlock = 0,currentZ = z;zBlock <= inputArray[yBlock].length;zBlock++,currentZ++){
+            for(var xBlock = 0,currentX = x;xBlock <= inputArray[yBlock][zBlock].length;xBlock++,currentX++){
+                e.npc.world.setBlock(currentY,currentZ,currentX,inputArray[yBlock][zBlock][xBlock].getName(),inputArray[yBlock][zBlock][xBlock].getMetadata());
+            }
+        }
     }
 }
