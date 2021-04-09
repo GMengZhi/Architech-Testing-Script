@@ -9,3 +9,7 @@ function interact(e){
         e.npc.scoreboard.setPlayerScore(player,"ArchLevel",1);
     }
 }
+
+function interact(e){
+    saveAreaBlockToTheFile("ArchModel1*1",getBoxFromXYZ(e,-1456,3,-961,-1441,3,-976));
+}
