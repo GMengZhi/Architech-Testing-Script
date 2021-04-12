@@ -13,3 +13,8 @@ function interact(e){
 function interact(e){
     saveAreaBlockToTheFile("ArchModel1*1",getBoxFromXYZ(e,-1456,3,-961,-1441,3,-976));
 }
+
+function interact(e){
+    var targetBox = outPutAreaBlockFromTheFile("test");
+    setBoxFromArrayToXYZ(e,targetBox,0,0,0);
+}
