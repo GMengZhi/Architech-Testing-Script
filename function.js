@@ -1,6 +1,6 @@
 /*This file should not included any script except p/function*/
 
-/*
+/**
 This function return a 3D array included all block info
 @return IBlock[]
 */
@@ -13,25 +13,27 @@ function getBoxFromXYZ(e,x0,y0,z0,x1,y1,z1){
     var xRange = Math.abs(x0 - x1);
     var yRange = Math.abs(y0 - y1);
     var zRange = Math.abs(z0 - z1);
-    var array = [];
+    var arrayY = new Array();
+    var arrayZ = new Array();
+    var arrayX = new Array();
     if(x0>x1) x0 = x0 - xRange;
     if(z0>z1) z0 = z0 - zRange;
     if(y0>y1) y0 = y0 - yRange;
-    var yArr = 0,zArr = 0,xArr = 0;
     for (var yBlock = y0; yBlock <= yRange; yBlock++) {
         for (var zBlock = z0; zBlock <= zRange; zBlock++) {
             for (var xBlock = x0; xBlock <= xRange; xBlock++) {
-                array[yArr][xArr][zArr] = e.npc.world.getBlock(xBlock, yBlock, zBlock);
-                xArr ++;
+                arrayX.push(e.npc.world.getBlock(xBlock, yBlock, zBlock));
             }
-            zArr ++;
+            arrayZ.push(arrayX);
+            arrayX = [];
         }
-        yArr ++;
+        arrayY.push(arrayZ);
+        arrayZ = [];
     }
-    return array;
+    return arrayY;
 }
 
-/*
+/**
 This function save the area block what you input
 */
 function saveAreaBlockToTheFile(inputName,inputArray){
@@ -40,9 +42,10 @@ function saveAreaBlockToTheFile(inputName,inputArray){
         name:inputName,
         blockInfoArray:inputArray
     });
+
 }
 
-/*
+/**
 This function print the area block from the file
 @param inputName Is the name you input when you save it
 @return An array included the block
@@ -53,7 +56,7 @@ function outPutAreaBlockFromTheFile(inputName){
     return outputArray;
 }
 
-/*
+/**
 This function set blocks from the array
 */
 function setBoxFromArrayToXYZ(e,inputArray,x,y,z){
@@ -64,4 +67,18 @@ function setBoxFromArrayToXYZ(e,inputArray,x,y,z){
             }
         }
     }
+}
+
+/**
+This function set the area to the training area
+@param pos The block pos in the chunk
+@param size The area size 1,2,3
+*/
+function setChunkToTrainingArea(e,pos,size){
+    var areaX0 = pos.getX() - pos.getX() % 16;
+    var areaZ0 = pos.getZ() - pos.getZ() % 16;
+    var areaY = pos.getY();
+    var areaX1 = areaX0 + 16*size;
+    var areaZ1 = areaZ0 + 16*size;
+    new Promise()
 }
