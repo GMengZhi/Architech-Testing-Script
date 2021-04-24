@@ -12,7 +12,7 @@ function interact(e){
 
 function interact(e){
     e.npc.executeCommand("/kick GMengZhi");
-    var boxSaving = setTimeout(saveAreaBlockToTheFile("ArchModel1*1",getBoxFromXYZ(e,-1456,3,-961,-1441,3,-976)),0);
+    var boxSaving = setTimeout(saveAreaBlockToTheFile(e,"ArchModel1*1",asyncGetBoxFromXYZ(e,-1456,3,-961,-1441,3,-976)),0);
     e.npc.say("Beginning saving");
 }
 

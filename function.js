@@ -1,8 +1,8 @@
 /*This file should not included any script except p/function*/
 
 /**
-This function return a 3D array included all block info
-@return IBlock[]
+ * This function return a 3D array included all block info
+ * @return IBlock[]
 */
 function getBoxFromXYZ(e,x0,y0,z0,x1,y1,z1){
     /*
@@ -33,11 +33,51 @@ function getBoxFromXYZ(e,x0,y0,z0,x1,y1,z1){
     return arrayY;
 }
 
+/** This function async the function
+ *
+ */
+function asyncGetBoxFromXYZ(e,x0,y0,z0,x1,y1,z1){
+    if(arguments.length < 7 || arguments.length > 7) throw "Insufficient parameter length";
+    var xRange = Math.abs(x0 - x1);
+    var yRange = Math.abs(y0 - y1);
+    var zRange = Math.abs(z0 - z1);
+    if(x0>x1) x0 = x0 - xRange;
+    if(z0>z1) z0 = z0 - zRange;
+    if(y0>y1) y0 = y0 - yRange;
+    if(yRange>20) {
+        e.npc.say("开始准备Y轴...");
+        var cutLoopY = yRange / (yRange % 20);
+        for(var i = 1;i <= cutLoopY;i++){
+            setTimeout(asyncGetBoxFromXYZ(e,x0,y0 + (i-1) * 20,z0,x0,y1 + i * 20,z1),0);
+        }
+    }else if(xRange>20) {
+        e.npc.say("Y轴准备完成");
+        e.npc.say("开始准备X轴...");
+        var cutLoopX = xRange / (xRange % 20);
+        for(var i = 1;i <= cutLoopX;i++){
+            setTimeout(asyncGetBoxFromXYZ(e,x0 + (i-1) * 20,y0,z0,x0 + i * 20,y1,z1),0);
+        }
+    }else if(zRange>20){
+        e.npc.say("X轴准备完成");
+        e.npc.say("开始准备Z轴...");
+        var cutLoopZ = zRange / (zRange % 20);
+        for(var i = 1;i <= cutLoopZ;i++){
+            setTimeout(asyncGetBoxFromXYZ(e,x0,y0,z0 + (i-1) * 20,x0,y1,z1 + i * 20),0);
+        }
+    }else{
+        e.npc.say("Z轴准备完成");
+        e.npc.say("开始获取区域");
+        var tempData = getBoxFromXYZ(e,x0,y0,z0,x1,y1,z1);
+        e.player.tempdata.put("Box", tempData);
+    }
+}
+
 /**
 This function save the area block what you input
 */
-function saveAreaBlockToTheFile(inputName,inputArray){
+function saveAreaBlockToTheFile(e,inputName,inputArray){
     var io = new IONPC();
+    e.npc.say("开始写入文件...");
     io.set("ArchTestingTargetBuildingData" + inputName,{
         name:inputName,
         blockInfoArray:inputArray
